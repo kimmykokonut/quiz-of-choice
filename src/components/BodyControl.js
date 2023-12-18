@@ -37,8 +37,8 @@ const BodyControl = () => {
 // <QuizDetail />
 
      if (formVisibleOnPage) {
-        currentlyVisibleState = <NewQuizForm />
-        //onNewQuizCreation={handleAddNewQuiz};
+        currentlyVisibleState = <NewQuizForm 
+        onNewQuizCreation={handleAddNewQuiz} />
         buttonText = "Return to main page";
     } else {
         currentlyVisibleState = <QuizList />

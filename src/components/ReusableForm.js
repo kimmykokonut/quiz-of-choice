@@ -6,8 +6,8 @@ const ReusableForm = (props) => {
         <React.Fragment>
             <form onSubmit={props.formSubmissionHandler}>
                 <p>Please fill out the form with 5 questions and their answers to buid a new quiz for someone to take</p>
-                <label htmlFor='inputName'></label>
-                <input name='inputName' placeholder='name of your quiz'></input>
+                <label htmlFor='name'></label>
+                <input name='name' placeholder='name of your quiz'></input>
                 <br />
 
                 <label htmlFor="question1">{props.question1} </label>
