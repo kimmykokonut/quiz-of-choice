@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# Quiz CRUD, REACT Firebase
+
+## By Kim & Gabe
+
+## BUGS
+* in quizDetail, take quiz btn returns to main page (setFormFalse somewhere?) want that btn to process the quiz form fill submit action.
+* in quizDetail the return to main btn doesn't work as desired. (console.log bodycontrol line22)
+* obv. styling
+* Edit functionality
+* Delete functionality
+* connect to firebase.
+
+* allow results submitted to db
+* user sign in, out, up (to join)
+* user have own dashboard with quiz list.
+
+
+Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

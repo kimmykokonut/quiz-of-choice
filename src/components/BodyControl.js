@@ -23,9 +23,12 @@ const BodyControl = () => {
         setFormVisibleOnPage(!formVisibleOnPage);
         // }
     }
-    // const handleShowQuiz = () => {
-    //     console.log('handle show quiz function');
-    // }
+    const handleShowQuiz = (id) => {
+        const selection = mainQuizList.filter(quiz => quiz.id === id)[0];
+        setSelectedQuiz(selection);
+
+        console.log('handle show quiz function');
+    }
     const handleAddNewQuiz = (newQuiz) => {
         console.log(newQuiz);
         //mainQuizList.push(newQuiz);
@@ -43,14 +46,22 @@ const BodyControl = () => {
 //<EditQuizForm />
 // <QuizDetail />
 
-     if (formVisibleOnPage) {
+    if (selectedQuiz != null) {
+        currentlyVisibleState = <QuizDetail
+        quiz={selectedQuiz}
+        //onClickingDelete
+        //onClickingEdit 
+        />
+        buttonText="Return to main quiz list";
+    } else if (formVisibleOnPage) {
         currentlyVisibleState = <NewQuizForm 
         onNewQuizCreation={handleAddNewQuiz} />
         buttonText = "Return to main page";
     } else {
         currentlyVisibleState = <QuizList 
+        onQuizSelection={handleShowQuiz}
         updatedList={mainQuizList}/>
-            //onQuizSelection={handleShowQuiz};
+            
             buttonText= "Create new quiz";
     }
 

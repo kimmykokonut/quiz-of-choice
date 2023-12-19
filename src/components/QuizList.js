@@ -11,8 +11,10 @@ const QuizList = (props) => {
             <hr />
             {Object.values(currentQuizList).map((quiz, index) =>
                 <Quiz
+                whenQuizClicked={props.onQuizSelection}
                 name={quiz.name}
                 key={index}
+                id={quiz.id}
             /> )}
         </React.Fragment>
     );
