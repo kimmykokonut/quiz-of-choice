@@ -5,7 +5,7 @@ import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
 import db from './../firebase';
-import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 
 const BodyControl = () => {
@@ -86,9 +86,10 @@ setError(error.message)
         setEditing(false);
         setSelectedQuiz(quizToEdit);
     }
-    const handleDeleteQuiz = (id) => {
-        const updatedQuizList = mainQuizList.filter(quiz => quiz.id !== id);
-        setMainQuizList(updatedQuizList);
+    const handleDeleteQuiz = async (id) => {
+    await deleteDoc(doc(db, "quizzes", id));
+        // const updatedQuizList = mainQuizList.filter(quiz => quiz.id !== id);
+        // setMainQuizList(updatedQuizList);
         setSelectedQuiz(null);
     }
 
