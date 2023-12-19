@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import EditQuizForm from "./EditQuizForm";
 import QuizList from "./QuizList";
 import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
-import { useState } from "react";
 import { mainQuizzes } from "../mainQuizzes";
+import db from './../firebase';
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
 
 const BodyControl = () => {
@@ -12,6 +13,37 @@ const BodyControl = () => {
     const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [editing, setEditing] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const unSubscribe = onSnapshot(
+            collection(db, "quizzes"),
+            (collectionSnapshop) => {
+                const quizzes = [];
+                collectionSnapshop.forEach((doc) => {
+                    quizzes.push({
+                        name: doc.data().name, //access name key to get value
+                        question1: doc.data().question1,
+                        answer1: doc.data().answer1,
+                        question2: doc.data().question2,
+                        answer2: doc.data().answer2,
+                        question3: doc.data().question3,
+                        answer3: doc.data().answer3,
+                        question4: doc.data().question4,
+                        answer4: doc.data().answer4,
+                        question5: doc.data().question5,
+                        answer5: doc.data().answer5,
+                        id: doc.id 
+                    });
+                });
+                setMainQuizList(quizzes);
+            },
+            (error) => {
+setError(error.message)
+            }
+        );
+        return () => unSubscribe();
+    }, []);
 
     const handleClick = () => {  //this is the button appearing on all pages
         if (selectedQuiz != null) {
@@ -28,10 +60,11 @@ const BodyControl = () => {
         const selection = mainQuizList.filter(quiz => quiz.id === id)[0];
         setSelectedQuiz(selection);
     }
-    const handleAddNewQuiz = (newQuiz) => {
-        const newQuizList = [...mainQuizList, newQuiz];
-        console.log(newQuizList);
-        setMainQuizList(newQuizList);
+    const handleAddNewQuiz = async (newQuizData) => {
+        console.log(newQuizData);
+        await addDoc(collection(db, "quizzes"), newQuizData);
+        // const newQuizList = [...mainQuizList, newQuiz];
+        // setMainQuizList(newQuizList);
         setFormVisibleOnPage(false);
     }
     const handleTakeQuiz = (quizInput) => {
@@ -44,11 +77,11 @@ const BodyControl = () => {
     const handleEdit = (quizToEdit) => {
         console.log(typeof quizToEdit);
         const editedQuizList = mainQuizList
-        .filter(quiz => quiz.id !== selectedQuiz.id)
-        .concat(quizToEdit);
+            .filter(quiz => quiz.id !== selectedQuiz.id)
+            .concat(quizToEdit);
         setMainQuizList(editedQuizList);
         setEditing(false);
-        setSelectedQuiz(quizToEdit); 
+        setSelectedQuiz(quizToEdit);
     }
     const handleDeleteQuiz = (id) => {
         const updatedQuizList = mainQuizList.filter(quiz => quiz.id !== id);
@@ -58,12 +91,13 @@ const BodyControl = () => {
 
     let currentlyVisibleState = null;
     let buttonText = null;
-
-    if (editing) {
-        currentlyVisibleState= <EditQuizForm
-        quiz={selectedQuiz}
-        onEditQuiz={handleEdit} />
-        buttonText="Return to main page";
+    if (error){
+        currentlyVisibleState = <p>there was an Error {error}</p>
+    } else if (editing) {
+        currentlyVisibleState = <EditQuizForm
+            quiz={selectedQuiz}
+            onEditQuiz={handleEdit} />
+        buttonText = "Return to main page";
     } else if (selectedQuiz != null) {
         currentlyVisibleState = <QuizDetail
             quiz={selectedQuiz}
@@ -89,7 +123,7 @@ const BodyControl = () => {
     return (
         <React.Fragment>
             {currentlyVisibleState}
-            <button onClick={handleClick}>{buttonText}</button>
+            {error ? null :  <button onClick={handleClick}>{buttonText}</button>}
         </React.Fragment>
     )
 

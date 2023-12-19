@@ -1,7 +1,7 @@
 import React from 'react';
 import ReusableForm from './ReusableForm';
 import PropTypes from 'prop-types';
-import { v4 } from 'uuid';
+// import { v4 } from 'uuid';
 
 const NewQuizForm = (props) => {
     function handleNewQuizSubmission(e) {
@@ -19,7 +19,7 @@ const NewQuizForm = (props) => {
             answer4: e.target.answer4.value || 'n/a',
             question5: e.target.question5.value || 'n/a',
             answer5: e.target.answer5.value || 'n/a',
-            id: v4()
+            // id: v4()
         })
     };
     return(
