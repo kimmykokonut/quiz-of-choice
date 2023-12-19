@@ -13,56 +13,71 @@ const BodyControl = () => {
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [editing, setEditing] = useState(false);
 
-    const handleClick = () => {
-        // if (selectedTicket != null) {
-        //     setFormVisibleOnPage(false);
-        //     setSelectedTicket(null);
-        //     setEditing(false);
-        // } else {
-            console.log('button clicked');
-        setFormVisibleOnPage(!formVisibleOnPage);
-        // }
+    const handleClick = () => {  //this is the button appearing on all pages
+        if (selectedQuiz != null) {
+            setFormVisibleOnPage(false);
+            setSelectedQuiz(null);
+            //     setEditing(false);
+            console.log('selectquiz not null');
+        } else {
+            console.log('button clicked, selequiz null');
+            setFormVisibleOnPage(!formVisibleOnPage);
+        }
     }
     const handleShowQuiz = (id) => {
         const selection = mainQuizList.filter(quiz => quiz.id === id)[0];
         setSelectedQuiz(selection);
-
-        console.log('handle show quiz function');
     }
     const handleAddNewQuiz = (newQuiz) => {
-        console.log(newQuiz);
-        //mainQuizList.push(newQuiz);
         const newQuizList = [...mainQuizList, newQuiz];
         console.log(newQuizList);
         setMainQuizList(newQuizList);
-        //setMainQuizList((prevQuizList) => [...prevQuizList, newQuizList]);
-        //console.log(mainQuizList);
         setFormVisibleOnPage(false);
     }
+    const handleTakeQuiz = (quizInput) => {
+        setSelectedQuiz(selectedQuiz);
+    }
+    const handleEditClick = () => {
+        setEditing(true);
+    }
+
+    const handleEdit = (quizToEdit) => {
+        console.log(typeof quizToEdit);
+        const editedQuizList = mainQuizList
+        .filter(quiz => quiz.id !== selectedQuiz.id)
+        .concat(quizToEdit);
+        setMainQuizList(editedQuizList);
+        setEditing(false);
+        setSelectedQuiz(quizToEdit); 
+    }
+
     let currentlyVisibleState = null;
     let buttonText = null;
 
-// add when state changes:          
-//<EditQuizForm />
-// <QuizDetail />
-
-    if (selectedQuiz != null) {
-        currentlyVisibleState = <QuizDetail
+    if (editing) {
+        currentlyVisibleState= <EditQuizForm
         quiz={selectedQuiz}
+        onEditQuiz={handleEdit} />
+        buttonText="Return to main page";
+    } else if (selectedQuiz != null) {
+        currentlyVisibleState = <QuizDetail
+            quiz={selectedQuiz}
+            onTakeQuiz={handleTakeQuiz}
+            onClickEdit={handleEditClick}
         //onClickingDelete
-        //onClickingEdit 
+        //add take quiz btn functionality
         />
-        buttonText="Return to main quiz list";
+        buttonText = "Return to main quiz list";
     } else if (formVisibleOnPage) {
-        currentlyVisibleState = <NewQuizForm 
-        onNewQuizCreation={handleAddNewQuiz} />
+        currentlyVisibleState = <NewQuizForm
+            onNewQuizCreation={handleAddNewQuiz} />
         buttonText = "Return to main page";
     } else {
-        currentlyVisibleState = <QuizList 
-        onQuizSelection={handleShowQuiz}
-        updatedList={mainQuizList}/>
-            
-            buttonText= "Create new quiz";
+        currentlyVisibleState = <QuizList
+            onQuizSelection={handleShowQuiz}
+            updatedList={mainQuizList} />
+
+        buttonText = "Create new quiz";
     }
 
     return (

@@ -25,6 +25,8 @@ const NewQuizForm = (props) => {
     return(
         <React.Fragment>
             <h3>Create a new quiz!</h3>
+            <p>Please fill out the form with 5 questions and their answers to buid a new quiz for someone to take</p>
+
             <ReusableForm
             formSubmissionHandler={handleNewQuizSubmission}
             buttonText="Create" />
