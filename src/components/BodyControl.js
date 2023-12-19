@@ -4,7 +4,7 @@ import QuizList from "./QuizList";
 import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
-import db from './../firebase';
+import { db } from './../firebase';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 
@@ -49,10 +49,7 @@ setError(error.message)
         if (selectedQuiz != null) {
             setFormVisibleOnPage(false);
             setSelectedQuiz(null);
-            //     setEditing(false);
-            console.log('selectquiz not null');
         } else {
-            console.log('button clicked, selequiz null');
             setFormVisibleOnPage(!formVisibleOnPage);
         }
     }
@@ -63,8 +60,6 @@ setError(error.message)
     const handleAddNewQuiz = async (newQuizData) => {
         console.log(newQuizData);
         await addDoc(collection(db, "quizzes"), newQuizData);
-        // const newQuizList = [...mainQuizList, newQuiz];
-        // setMainQuizList(newQuizList);
         setFormVisibleOnPage(false);
     }
     const handleTakeQuiz = (quizInput) => {
@@ -78,18 +73,11 @@ setError(error.message)
 
         const quizRef = doc(db, "quizzes", quizToEdit.id);
         await updateDoc(quizRef, quizToEdit)
-        // console.log(typeof quizToEdit);
-        // const editedQuizList = mainQuizList
-        //     .filter(quiz => quiz.id !== selectedQuiz.id)
-        //     .concat(quizToEdit);
-        // setMainQuizList(editedQuizList);
         setEditing(false);
         setSelectedQuiz(quizToEdit);
     }
     const handleDeleteQuiz = async (id) => {
     await deleteDoc(doc(db, "quizzes", id));
-        // const updatedQuizList = mainQuizList.filter(quiz => quiz.id !== id);
-        // setMainQuizList(updatedQuizList);
         setSelectedQuiz(null);
     }
 
@@ -108,7 +96,6 @@ setError(error.message)
             onTakeQuiz={handleTakeQuiz}
             onClickEdit={handleEditClick}
             onClickDelete={handleDeleteQuiz}
-        //onClickingDelete
         //add take quiz btn functionality
         />
         buttonText = "Return to main quiz list";

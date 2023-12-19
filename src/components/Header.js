@@ -1,10 +1,19 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 const Header = () => {
     return(
         <React.Fragment>
-        <h1>Quiz Party</h1>
+        <h1>Let's get quizzy!</h1>
+        <ul>
+            <li>
+                <Link to="/">Home</Link>
+            </li>
+            <li>
+                <Link to='/sign-in'>Sign In</Link>
+            </li>
+        </ul>
         </React.Fragment>
-    )
+    );
 }
 export default Header;
