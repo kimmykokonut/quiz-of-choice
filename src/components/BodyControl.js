@@ -5,7 +5,7 @@ import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
 import db from './../firebase';
-import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, doc, updateDoc } from "firebase/firestore";
 
 
 const BodyControl = () => {
@@ -74,12 +74,15 @@ setError(error.message)
         setEditing(true);
     }
 
-    const handleEdit = (quizToEdit) => {
-        console.log(typeof quizToEdit);
-        const editedQuizList = mainQuizList
-            .filter(quiz => quiz.id !== selectedQuiz.id)
-            .concat(quizToEdit);
-        setMainQuizList(editedQuizList);
+    const handleEdit = async (quizToEdit) => {
+
+        const quizRef = doc(db, "quizzes", quizToEdit.id);
+        await updateDoc(quizRef, quizToEdit)
+        // console.log(typeof quizToEdit);
+        // const editedQuizList = mainQuizList
+        //     .filter(quiz => quiz.id !== selectedQuiz.id)
+        //     .concat(quizToEdit);
+        // setMainQuizList(editedQuizList);
         setEditing(false);
         setSelectedQuiz(quizToEdit);
     }
