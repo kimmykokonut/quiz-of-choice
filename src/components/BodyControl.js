@@ -5,6 +5,7 @@ import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
 import { db, auth } from './../firebase';
+//import { query, where, getDocs } from 'firebase/firestore';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const BodyControl = () => {
@@ -43,7 +44,22 @@ const BodyControl = () => {
         );
         return () => unSubscribe();
     }, []);
+    //
+    // async function fetchData() {
+    //     const q = query(
+    //         collection(db, "quizzes"),
+    //         where("name", '==', 'dog')
+    //     );
+    //     const querySnapshot = await getDocs(q);
+    //     querySnapshot.forEach((doc) => {
+    //         console.log(doc.id, " => ", doc.data());
+    //     });
+    // }
+    // fetchData();
 
+
+
+    //
     const handleClick = () => {  //this is the button appearing on all pages
         if (selectedQuiz != null) {
             setFormVisibleOnPage(false);
@@ -61,7 +77,10 @@ const BodyControl = () => {
         await addDoc(collection(db, "quizzes"), newQuizData);
         setFormVisibleOnPage(false);
     }
-    const handleTakeQuiz = (quizInput) => {
+    const handleTakeQuiz = async (quizInput) => {
+        console.log(typeof quizInput);
+        console.log(quizInput);
+        await addDoc(collection(db, "quizAnswers"), quizInput);
         setSelectedQuiz(selectedQuiz);
     }
     const handleEditClick = () => {

@@ -52,7 +52,7 @@ function SignIn() {
             placeholder="email" />
             <br />
             <label>
-            <input minlength="6"
+            <input minLength="6"
             type='password'
             name='password'
             placeholder="Password" /></label>
