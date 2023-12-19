@@ -5,7 +5,7 @@
 ## TODO
 *  want the  take quiz btn to process the quiz form fill submit action. and stay on that page
 * obv. styling
-* Edit functionality
+
 * Delete functionality
 * connect to firebase.
 

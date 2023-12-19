@@ -50,6 +50,11 @@ const BodyControl = () => {
         setEditing(false);
         setSelectedQuiz(quizToEdit); 
     }
+    const handleDeleteQuiz = (id) => {
+        const updatedQuizList = mainQuizList.filter(quiz => quiz.id !== id);
+        setMainQuizList(updatedQuizList);
+        setSelectedQuiz(null);
+    }
 
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -64,6 +69,7 @@ const BodyControl = () => {
             quiz={selectedQuiz}
             onTakeQuiz={handleTakeQuiz}
             onClickEdit={handleEditClick}
+            onClickDelete={handleDeleteQuiz}
         //onClickingDelete
         //add take quiz btn functionality
         />

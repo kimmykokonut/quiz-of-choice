@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const QuizDetail = (props) => {
-    const { quiz, onClickEdit } = props;
+    const { quiz, onClickEdit, onClickDelete } = props;
     // function handleTakeQuiz(e) {
     //     e.preventDefault();
     //     console.log(e.target.question1.value)
@@ -52,8 +52,7 @@ const QuizDetail = (props) => {
                 <button >Take Quiz- nonfunctional</button> 
             </form>
             <button onClick={onClickEdit}>Edit quiz content</button>
-            {/* button onclick edit/update
-            button onclick delete */}
+            <button onClick={() => onClickDelete(quiz.id)}>Delete Quiz!</button>
         </React.Fragment >
     )
 }
@@ -61,7 +60,8 @@ const QuizDetail = (props) => {
 QuizDetail.propTypes = {
     quiz: PropTypes.object,
     onNewQuizCreation: PropTypes.func,
-    onClickEdit: PropTypes.func
+    onClickEdit: PropTypes.func,
+    onClickDelete: PropTypes.func
 };
 export default QuizDetail;
 
