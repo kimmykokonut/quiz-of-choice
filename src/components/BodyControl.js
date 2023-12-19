@@ -4,9 +4,8 @@ import QuizList from "./QuizList";
 import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
-import { db } from './../firebase';
+import { db, auth } from './../firebase';
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
-
 
 const BodyControl = () => {
     const [mainQuizList, setMainQuizList] = useState(mainQuizzes);
@@ -33,13 +32,13 @@ const BodyControl = () => {
                         answer4: doc.data().answer4,
                         question5: doc.data().question5,
                         answer5: doc.data().answer5,
-                        id: doc.id 
+                        id: doc.id
                     });
                 });
                 setMainQuizList(quizzes);
             },
             (error) => {
-setError(error.message)
+                setError(error.message)
             }
         );
         return () => unSubscribe();
@@ -77,46 +76,52 @@ setError(error.message)
         setSelectedQuiz(quizToEdit);
     }
     const handleDeleteQuiz = async (id) => {
-    await deleteDoc(doc(db, "quizzes", id));
+        await deleteDoc(doc(db, "quizzes", id));
         setSelectedQuiz(null);
     }
 
-    let currentlyVisibleState = null;
-    let buttonText = null;
-    if (error){
-        currentlyVisibleState = <p>there was an Error {error}</p>
-    } else if (editing) {
-        currentlyVisibleState = <EditQuizForm
-            quiz={selectedQuiz}
-            onEditQuiz={handleEdit} />
-        buttonText = "Return to main page";
-    } else if (selectedQuiz != null) {
-        currentlyVisibleState = <QuizDetail
-            quiz={selectedQuiz}
-            onTakeQuiz={handleTakeQuiz}
-            onClickEdit={handleEditClick}
-            onClickDelete={handleDeleteQuiz}
-        //add take quiz btn functionality
-        />
-        buttonText = "Return to main quiz list";
-    } else if (formVisibleOnPage) {
-        currentlyVisibleState = <NewQuizForm
-            onNewQuizCreation={handleAddNewQuiz} />
-        buttonText = "Return to main page";
-    } else {
-        currentlyVisibleState = <QuizList
-            onQuizSelection={handleShowQuiz}
-            updatedList={mainQuizList} />
-
-        buttonText = "Create new quiz";
+    if (auth.currentUser == null) {
+        return (
+            <React.Fragment>
+                <h1>You must be signed in to join the quiz party.</h1>
+            </React.Fragment>
+        )
+    } else if (auth.currentUser != null) {
+        let currentlyVisibleState = null;
+        let buttonText = null;
+        if (error) {
+            currentlyVisibleState = <p>there was an Error {error}</p>
+        } else if (editing) {
+            currentlyVisibleState = <EditQuizForm
+                quiz={selectedQuiz}
+                onEditQuiz={handleEdit} />
+            buttonText = "Return to main page";
+        } else if (selectedQuiz != null) {
+            currentlyVisibleState = <QuizDetail
+                quiz={selectedQuiz}
+                onTakeQuiz={handleTakeQuiz}
+                onClickEdit={handleEditClick}
+                onClickDelete={handleDeleteQuiz}
+            //add take quiz btn functionality
+            />
+            buttonText = "Return to main quiz list";
+        } else if (formVisibleOnPage) {
+            currentlyVisibleState = <NewQuizForm
+                onNewQuizCreation={handleAddNewQuiz} />
+            buttonText = "Return to main page";
+        } else {
+            currentlyVisibleState = <QuizList
+                onQuizSelection={handleShowQuiz}
+                updatedList={mainQuizList} />
+            buttonText = "Create new quiz";
+        }
+        return (
+            <React.Fragment>
+                {currentlyVisibleState}
+                {error ? null : <button onClick={handleClick}>{buttonText}</button>}
+            </React.Fragment>
+        );
     }
-
-    return (
-        <React.Fragment>
-            {currentlyVisibleState}
-            {error ? null :  <button onClick={handleClick}>{buttonText}</button>}
-        </React.Fragment>
-    )
-
 }
+
 export default BodyControl;
