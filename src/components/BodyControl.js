@@ -8,7 +8,7 @@ import { mainQuizzes } from "../mainQuizzes";
 
 
 const BodyControl = () => {
-    const [mainQuizList, setMainQuizList] = useState({ mainQuizzes });
+    const [mainQuizList, setMainQuizList] = useState(mainQuizzes);
     const [formVisibleOnPage, setFormVisibleOnPage] = useState(false);
     const [selectedQuiz, setSelectedQuiz] = useState(null);
     const [editing, setEditing] = useState(false);
@@ -23,11 +23,18 @@ const BodyControl = () => {
         setFormVisibleOnPage(!formVisibleOnPage);
         // }
     }
-    const handleShowQuiz = () => {
-        console.log('handle show quiz function');
-    }
-    const handleAddNewQuiz = () => {
-        console.log('handle add new quiz');
+    // const handleShowQuiz = () => {
+    //     console.log('handle show quiz function');
+    // }
+    const handleAddNewQuiz = (newQuiz) => {
+        console.log(newQuiz);
+        //mainQuizList.push(newQuiz);
+        const newQuizList = [...mainQuizList, newQuiz];
+        console.log(newQuizList);
+        setMainQuizList(newQuizList);
+        //setMainQuizList((prevQuizList) => [...prevQuizList, newQuizList]);
+        //console.log(mainQuizList);
+        setFormVisibleOnPage(false);
     }
     let currentlyVisibleState = null;
     let buttonText = null;
@@ -41,7 +48,8 @@ const BodyControl = () => {
         onNewQuizCreation={handleAddNewQuiz} />
         buttonText = "Return to main page";
     } else {
-        currentlyVisibleState = <QuizList />
+        currentlyVisibleState = <QuizList 
+        updatedList={mainQuizList}/>
             //onQuizSelection={handleShowQuiz};
             buttonText= "Create new quiz";
     }

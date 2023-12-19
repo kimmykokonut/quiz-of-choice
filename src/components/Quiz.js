@@ -6,25 +6,23 @@ const Quiz = (props) => {
         <React.Fragment>
             <div onClick={() => props.whenQuizClicked(props.id)}>
             <h3>{props.name}</h3>
-            <form>
+            {/* <form>
             <p>Question 1: {props.question1}</p>
             <input></input>
             {/* <p>Answer 1: {props.answer1}</p> */}
-            <p>Question 2: {props.question2}</p>
-            <input></input>
+            {/* <p>Question 2: {props.question2}</p>
+            <input></input> */}
             {/* <p>Answer 2: {props.answer2}</p> */}
-            <p>Question 3: {props.question3}</p>
-            <input></input>
+            {/* <p>Question 3: {props.question3}</p> */}
+            
             {/* <p>Answer 3: {props.answer3}</p> */}
-            <p>Question 4: {props.question4}</p>
-            <input></input>
+            {/* <p>Question 4: {props.question4}</p>
+            <input></input> */}
             {/* <p>Answer 4: {props.answer4}</p> */}
-            <p>Question 5: {props.question5}</p>
-            <input></input>
+            {/* <p>Question 5: {props.question5}</p>
+            <input></input> */}
             {/* <p>Answer 5: {props.answer5}</p> */}
-            <br />
-            <button>Submit Quiz</button>
-            </form>
+            
             <hr />
             </div>
         </React.Fragment>
