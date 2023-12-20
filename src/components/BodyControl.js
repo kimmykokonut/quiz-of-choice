@@ -24,15 +24,35 @@ const BodyControl = () => {
                     quizzes.push({
                         name: doc.data().name, //access name key to get value
                         question1: doc.data().question1,
-                        answer1: doc.data().answer1,
+                        answer1a: doc.data().answer1a,
+                        answer1b: doc.data().answer1b,
+                        answer1c: doc.data().answer1c,
+                        answer1d: doc.data().answer1d,
+                        correctanswer1: doc.data().correctanswer1,
                         question2: doc.data().question2,
-                        answer2: doc.data().answer2,
+                        answer2a: doc.data().answer2a,
+                        answer2b: doc.data().answer2b,
+                        answer2c: doc.data().answer2c,
+                        answer2d: doc.data().answer2d,
+                        correctanswer2: doc.data().correctanswer2,
                         question3: doc.data().question3,
-                        answer3: doc.data().answer3,
+                        answer3a: doc.data().answer3a,
+                        answer3b: doc.data().answer3b,
+                        answer3c: doc.data().answer3c,
+                        answer3d: doc.data().answer3d,
+                        correctanswer3: doc.data().correctanswer3,
                         question4: doc.data().question4,
-                        answer4: doc.data().answer4,
+                        answer4a: doc.data().answer4a,
+                        answer4b: doc.data().answer4b,
+                        answer4c: doc.data().answer4c,
+                        answer4d: doc.data().answer4d,
+                        correctanswer4: doc.data().correctanswer4,
                         question5: doc.data().question5,
-                        answer5: doc.data().answer5,
+                        answer5a: doc.data().answer5a,
+                        answer5b: doc.data().answer5b,
+                        answer5c: doc.data().answer5c,
+                        answer5d: doc.data().answer5d,
+                        correctanswer5: doc.data().correctanswer5,
                         id: doc.id
                     });
                 });
@@ -77,9 +97,10 @@ const BodyControl = () => {
         await addDoc(collection(db, "quizzes"), newQuizData);
         setFormVisibleOnPage(false);
     }
+    //TAKE QUIZ F HERE
     const handleTakeQuiz = async (quizInput) => {
-        console.log(typeof quizInput);
-        console.log(quizInput);
+        console.log(typeof quizInput); //object
+        console.log(quizInput); //answer1: 1a (picked) success firestore
         await addDoc(collection(db, "quizAnswers"), quizInput);
         setSelectedQuiz(selectedQuiz);
     }

@@ -37,9 +37,24 @@ button:focus-visible {
 input {
   background-color: #242424; 
   color: azure; 
+  padding-bottom: 6px;
+  margin: 5px;
+  border: 2px solid beige;
 } 
 ::placeholder {
   font-weight: bold;
-  opacity: 1;
+  opacity: .7;
   color: white;
+}
+textarea {
+  background-color: #242424; 
+  color: azure; 
+  padding-bottom: 6px;
+  margin: 5px;
+  border: 2px solid beige;
+} 
+textarea::placeholder {
+  font-weight: bold;
+  opacity: .7;
+  color: wheat;
 }
