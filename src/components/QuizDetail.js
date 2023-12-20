@@ -43,6 +43,7 @@ const QuizDetail = (props) => {
                 <br />
                 <hr />
                 <label htmlFor="question2">2: {quiz.question2}</label>
+                <br />
                 <label htmlFor="answer2a">
                     <input type='radio' name="answer2" id="answer2a" value={quiz.answer2a} />{quiz.answer2a}</label>
                 <label htmlFor="answer2b">
@@ -54,6 +55,7 @@ const QuizDetail = (props) => {
 
                 <br />
                 <label htmlFor="question3">3: {quiz.question3}</label>
+                <br />
                 <label htmlFor="answer3a">
                     <input type='radio' name="answer3" id="answer3a" value={quiz.answer3a} />{quiz.answer3a}</label>
                 <label htmlFor="answer3b">
@@ -64,6 +66,7 @@ const QuizDetail = (props) => {
                     <input type='radio' name="answer3" id="answer3d" value={quiz.answer3d} />{quiz.answer3d}</label>
                 <br />
                 <label htmlFor="question4">4: {quiz.question4}</label>
+                <br />
                 <label htmlFor="answer4a">
                     <input type='radio' name="answer4" id="answer4a" value={quiz.answer4a} />{quiz.answer4a}</label>
                 <label htmlFor="answer4b">
@@ -74,6 +77,7 @@ const QuizDetail = (props) => {
                     <input type='radio' name="answer4" id="answer4d" value={quiz.answer4d} />{quiz.answer4d}</label>
                 <br />
                 <label htmlFor="question5">5: {quiz.question5}</label>
+                <br />
                 <label htmlFor="answer5a">
                     <input type='radio' name="answer5" id="answer5a" value={quiz.answer5a} />{quiz.answer5a}</label>
                 <label htmlFor="answer5b">
@@ -89,20 +93,24 @@ const QuizDetail = (props) => {
             <button onClick={() => onClickDelete(quiz.id)}>Delete Quiz!</button>
             {userAnswerResult ?
                 <div className='hidden'>
-                    <h2>Results:</h2>
-                    <p>{userAnswerResult.answer1}</p>
-                    <p>{userAnswerResult.answer2}</p>
-                    <p>{userAnswerResult.answer3}</p>
-                    <p>{userAnswerResult.answer4}</p>
-                    <p>{userAnswerResult.answer5}</p>
-                    <p>Right Answers</p>
-                    <p>#1: {quiz.correctanswer1}</p>
-                    <p>#2: {quiz.correctanswer2}</p>
-                    <p>#3: {quiz.correctanswer3}</p>
-                    <p>#4: {quiz.correctanswer4}</p>
-                    <p>#5: {quiz.correctanswer5}</p>
+                    <h2>Your answers:</h2>
+                    <ul>
+                        <li>1: {userAnswerResult.answer1}</li>
+                        <li>2: {userAnswerResult.answer2}</li>
+                        <li>3: {userAnswerResult.answer3}</li>
+                        <li>4: {userAnswerResult.answer4}</li>
+                        <li>5: {userAnswerResult.answer5}</li>
+                    </ul>
+                    <h3>Right Answers</h3>
+                    <ul>
+                        <li>1: {quiz.correctanswer1}</li>
+                        <li>2: {quiz.correctanswer2}</li>
+                        <li>3: {quiz.correctanswer3}</li>
+                        <li>4: {quiz.correctanswer4}</li>
+                        <li>5: {quiz.correctanswer5}</li>
+                    </ul>
                     <h3>Your quiz score: </h3>
-                    <p>score goes here</p>
+                    <p>(score goes here)</p>
                 </div>
                 : <></>}
 
