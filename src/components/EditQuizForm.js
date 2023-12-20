@@ -10,7 +10,7 @@ const EditQuizForm = (props) => {
         props.onEditQuiz({
             name: e.target.name.value || quiz.name,
             question1: e.target.question1.value || quiz.question1,
-            answer1: e.target.answer1.value || quiz.answer1,
+            answer1a: e.target.answer1.value || quiz.answer1,
             question2: e.target.question2.value || quiz.question2,
             answer2: e.target.answer2.value || quiz.answer2,
             question3: e.target.question3.value || quiz.question3,

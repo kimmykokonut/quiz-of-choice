@@ -1,25 +1,44 @@
 import React from 'react';
 import ReusableForm from './ReusableForm';
 import PropTypes from 'prop-types';
-// import { v4 } from 'uuid';
 
 const NewQuizForm = (props) => {
     function handleNewQuizSubmission(e) {
         e.preventDefault();
-        console.log(e.target.name.value)
+        console.log(e.target.answer1a.value)
         props.onNewQuizCreation({
             name: e.target.name.value || 'n/a',
             question1: e.target.question1.value || 'n/a',
-            answer1: e.target.answer1.value || 'n/a',
+            //answer1: e.target.answer1.value || 'n/a',
+
+            answer1a: e.target.answer1a.value || 'n/a',
+            answer1b: e.target.answer1b.value || 'n/a',
+            answer1c: e.target.answer1c.value || 'n/a',
+            answer1d: e.target.answer1d.value || 'n/a',
+
             question2: e.target.question2.value || 'n/a',
-            answer2: e.target.answer2.value || 'n/a',
+            answer2a: e.target.answer2a.value || 'n/a',
+            answer2b: e.target.answer2b.value || 'n/a',
+            answer2c: e.target.answer2c.value || 'n/a',
+            answer2d: e.target.answer2d.value || 'n/a',
+
             question3: e.target.question3.value || 'n/a',
-            answer3: e.target.answer3.value || 'n/a',
+            answer3a: e.target.answer3a.value || 'n/a',
+            answer3b: e.target.answer3b.value || 'n/a',
+            answer3c: e.target.answer3c.value || 'n/a',
+            answer3d: e.target.answer3d.value || 'n/a',
+
             question4: e.target.question4.value || 'n/a',
-            answer4: e.target.answer4.value || 'n/a',
+            answer4a: e.target.answer4a.value || 'n/a',
+            answer4b: e.target.answer4b.value || 'n/a',
+            answer4c: e.target.answer4c.value || 'n/a',
+            answer4d: e.target.answer4d.value || 'n/a',
+
             question5: e.target.question5.value || 'n/a',
-            answer5: e.target.answer5.value || 'n/a',
-            // id: v4()
+            answer5a: e.target.answer5a.value || 'n/a',
+            answer5b: e.target.answer5b.value || 'n/a',
+            answer5c: e.target.answer5c.value || 'n/a',
+            answer5d: e.target.answer5d.value || 'n/a',
         })
     };
     return(
