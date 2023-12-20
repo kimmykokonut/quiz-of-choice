@@ -96,7 +96,11 @@ const QuizDetail = (props) => {
                     <p>{userAnswerResult.answer4}</p>
                     <p>{userAnswerResult.answer5}</p>
                     <p>Right Answers</p>
-                    <p>Correct Answer # 4 {quiz.correctanswer4}</p>
+                    <p>#1: {quiz.correctanswer1}</p>
+                    <p>#2: {quiz.correctanswer2}</p>
+                    <p>#3: {quiz.correctanswer3}</p>
+                    <p>#4: {quiz.correctanswer4}</p>
+                    <p>#5: {quiz.correctanswer5}</p>
                     <h3>Your quiz score: </h3>
                     <p>score goes here</p>
                 </div>
