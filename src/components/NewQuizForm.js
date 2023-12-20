@@ -1,6 +1,7 @@
 import React from 'react';
 import ReusableForm from './ReusableForm';
 import PropTypes from 'prop-types';
+import { auth } from './../firebase';
 
 const NewQuizForm = (props) => {
     function handleNewQuizSubmission(e) {
@@ -42,7 +43,8 @@ const NewQuizForm = (props) => {
             answer5b: e.target.answer5b.value || 'n/a',
             answer5c: e.target.answer5c.value || 'n/a',
             answer5d: e.target.answer5d.value || 'n/a',
-            correctanswer5: e.target.correctanswer5.value || 'n/a',
+            correctanswer5: e.target.correctanswer5.value || 'n/a', 
+            userId: auth.currentUser.uid
         })
     };
     return(

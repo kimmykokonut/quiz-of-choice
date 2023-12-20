@@ -7,6 +7,7 @@ function SignIn() {
     const [signUpSuccess, setSignUpSuccess] = useState(null);
     const [signInSuccess, setSignInSuccess] = useState(null);
     const [signOutSuccess, setSignOutSuccess] = useState(null);
+    //const [currentUser, setCurrentUser] = useState({});
 
     function doSignUp(e) {
         e.preventDefault();
@@ -16,6 +17,8 @@ function SignIn() {
         createUserWithEmailAndPassword(auth, email, password) //returns a promise
         .then((userCredential) => {
             setSignUpSuccess(`You've successfully signed up, ${userCredential.user.email}!`)
+            // setCurrentUser(userCredential.user);
+            // console.log(currentUser);
         })
         .catch((error) => {
             setSignUpSuccess(`There was an error signing up: ${error.message}!`)

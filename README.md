@@ -3,23 +3,10 @@
 ## By Kim & Gabe
 
 ## TODO
-*  quiz is not displaying created radio button 4 answers with the value as the label.
-*  want display answers to user
-* want to score the quiz and display score?
-* how to know which answer is right/wrong per question per quiz?
-
-* display on UI who is logged in...
-
-* database: user profile, stats, page on UI with list of quizzes created and taken?
+* create Redux slice for userState?
+* database: user profile, stats, page on UI with list of quizzes created and taken? add timestamp?
 * more database digging to add functionality
-
 * obv. styling
-
-* connect to firebase.
-
-* allow results submitted to db
-* user sign in, out, up (to join)
-* user have own dashboard with quiz list.
 
 ## Component Diagram
  ![Diagram of components](src/assets/diagram.drawio.svg)

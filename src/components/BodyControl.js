@@ -53,7 +53,8 @@ const BodyControl = () => {
                         answer5c: doc.data().answer5c,
                         answer5d: doc.data().answer5d,
                         correctanswer5: doc.data().correctanswer5,
-                        id: doc.id
+                        id: doc.id,
+                        userId: doc.data().userId
                     });
                 });
                 setMainQuizList(quizzes);

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { auth } from './../firebase';
 
 
 const Header = () => {
@@ -30,6 +31,7 @@ const Header = () => {
                 <Link to='/sign-in'>Sign In</Link>
             </div>
             </div>
+            <Link to="/dashboard" >User Dashboard</Link>
         </React.Fragment>
     );
 }

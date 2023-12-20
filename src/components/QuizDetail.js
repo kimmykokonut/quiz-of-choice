@@ -10,7 +10,7 @@ const QuizDetail = (props) => {
     function handleTakeQuizSubmission(e) {
         e.preventDefault();
         const userAnswer = {
-            answer1: e.target.answer1.value, //value=1a or 1b...
+            answer1: e.target.answer1.value, 
             answer2: e.target.answer2.value,
             answer3: e.target.answer3.value,
             answer4: e.target.answer4.value,
@@ -19,8 +19,6 @@ const QuizDetail = (props) => {
             userId: auth.currentUser.uid,
         }
         setUserAnswerResult(userAnswer);
-        //console.log(userAnswerResult); //null
-        //console.log(userAnswerResult.answer1);
         props.onTakeQuiz(userAnswer); //this sends obj to firebase
     };
    
@@ -32,7 +30,6 @@ const QuizDetail = (props) => {
         if (userAnswerResult.answer2 === quiz.correctanswer2) {
             totalScore += 1;
         }
-
         if (userAnswerResult.answer3 === quiz.correctanswer3) {
             totalScore += 1;
         }
