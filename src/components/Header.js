@@ -12,18 +12,11 @@ const Header = () => {
         textAlign: 'center',
         verticalAlign: 'middle',
         lineHeight: '90px',
-
-
-
-
     }
     const styleHeader = {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-
-        
-        
     }
     return (
         <React.Fragment>

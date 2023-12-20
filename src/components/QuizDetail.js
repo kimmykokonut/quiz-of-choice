@@ -17,13 +17,35 @@ const QuizDetail = (props) => {
             answer5: e.target.answer5.value,
             id: quiz.id,
             userId: auth.currentUser.uid,
-            //final score?
         }
         setUserAnswerResult(userAnswer);
-
-        props.onTakeQuiz(userAnswer); //this ssends obj to firebase
+        //console.log(userAnswerResult); //null
+        //console.log(userAnswerResult.answer1);
+        props.onTakeQuiz(userAnswer); //this sends obj to firebase
     };
+   
+    let totalScore = 0;
+    const addTotal = () => {
+        if (userAnswerResult.answer1 === quiz.correctanswer1) {
+            totalScore += 1;
+        }
+        if (userAnswerResult.answer2 === quiz.correctanswer2) {
+            totalScore += 1;
+        }
 
+        if (userAnswerResult.answer3 === quiz.correctanswer3) {
+            totalScore += 1;
+        }
+        if (userAnswerResult.answer4 === quiz.correctanswer4) {
+            totalScore += 1;
+        }
+        if (userAnswerResult.answer5 === quiz.correctanswer5) {
+            totalScore += 1;
+        }
+        totalScore = (totalScore /5) * 100
+        return totalScore;
+    }
+        //console.log(totalScore);
     return (
         <React.Fragment>
             <h2>Take this quiz!</h2>
@@ -87,7 +109,7 @@ const QuizDetail = (props) => {
                 <label htmlFor="answer5d">
                     <input type='radio' name="answer5" id="answer5d" value={quiz.answer5d} />{quiz.answer5d}</label>
                 <br />
-                <button type="submit">Take Quiz- nonfunctional</button>
+                <button type="submit">Take Quiz!</button>
             </form>
             <button onClick={onClickEdit}>Edit quiz content</button>
             <button onClick={() => onClickDelete(quiz.id)}>Delete Quiz!</button>
@@ -110,7 +132,7 @@ const QuizDetail = (props) => {
                         <li>5: {quiz.correctanswer5}</li>
                     </ul>
                     <h3>Your quiz score: </h3>
-                    <p>(score goes here)</p>
+                    <p>{addTotal()}%</p>
                 </div>
                 : <></>}
 
