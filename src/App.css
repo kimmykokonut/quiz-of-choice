@@ -59,3 +59,10 @@ textarea::placeholder {
   opacity: .7;
   color: wheat;
 }
+
+:link,
+:visited {
+  color: #646cff;
+  text-decoration: none;
+  transition: color 0.25s;
+}

@@ -12,6 +12,8 @@ function App() {
       <Header />
       <Routes>
         <Route path='/sign-in' element={<SignIn />} />
+        <Route path="/main" element={<BodyControl />}  />
+        <Route path="/home" element={<BodyControl />}  />
         <Route path="/" element={<BodyControl />}  />
         <Route path="/dashboard" element={<UserDashboard />} />         
       </Routes>

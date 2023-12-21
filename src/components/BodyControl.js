@@ -5,7 +5,9 @@ import NewQuizForm from "./NewQuizForm";
 import QuizDetail from "./QuizDetail";
 import { mainQuizzes } from "../mainQuizzes";
 import { db, auth } from './../firebase';
-//import { query, where, getDocs } from 'firebase/firestore';
+
+
+
 import { collection, addDoc, onSnapshot, doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 const BodyControl = () => {
@@ -89,6 +91,9 @@ const BodyControl = () => {
             setFormVisibleOnPage(!formVisibleOnPage);
         }
     }
+
+
+
     const handleShowQuiz = (id) => {
         const selection = mainQuizList.filter(quiz => quiz.id === id)[0];
         setSelectedQuiz(selection);
@@ -160,6 +165,8 @@ const BodyControl = () => {
             <React.Fragment>
                 {currentlyVisibleState}
                 {error ? null : <button onClick={handleClick}>{buttonText}</button>}
+              
+
             </React.Fragment>
         );
     }

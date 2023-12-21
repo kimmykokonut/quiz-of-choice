@@ -9,8 +9,8 @@ const NewQuizForm = (props) => {
         console.log(e.target.answer1a)
         props.onNewQuizCreation({
             name: e.target.name.value || 'n/a',
+            
             question1: e.target.question1.value || 'n/a',
-
             answer1a: e.target.answer1a.value || 'n/a',
             answer1b: e.target.answer1b.value || 'n/a',
             answer1c: e.target.answer1c.value || 'n/a',

@@ -128,7 +128,7 @@ const QuizDetail = (props) => {
                         <li>4: {quiz.correctanswer4}</li>
                         <li>5: {quiz.correctanswer5}</li>
                     </ul>
-                    <h3>Your quiz score: </h3>
+                    <h3>Your Quiz Score: </h3>
                     <p>{addTotal()}%</p>
                 </div>
                 : <></>}
