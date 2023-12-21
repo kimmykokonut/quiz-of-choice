@@ -3,10 +3,8 @@
 ## By Kim & Gabe
 
 ## TODO
-* create Redux slice for userState?
-* database: user profile, stats, page on UI with list of quizzes created and taken? add timestamp?
-* more database digging to add functionality
-* obv. styling
+* create Redux slice for userState? slice created but not connected.
+* database: add stats on dashboard with list of quizzes created and taken. add timestamp?
 
 ## Component Diagram
  ![Diagram of components](src/assets/diagram.drawio.svg)
